@@ -21,7 +21,7 @@ public class JornadaMilhasContext: DbContext
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
         optionsBuilder
-            .UseSqlServer("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=JornadaMilhas;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False");
+            .UseSqlServer("Integrated Security=SSPI;Persist Security Info=False;Initial Catalog=JornadaMilhas;Data Source=localhost;Password=Nesher!2020;TrustServerCertificate=true;");
     }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)

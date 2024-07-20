@@ -10,8 +10,7 @@ namespace JornadaMilhasV1.Gerenciador;
 public class GerenciadorDeOfertas
 {
     private List<OfertaViagem> ofertaViagem = new List<OfertaViagem>();
-    OfertaViagemDAL ofertaViagemDAL = new OfertaViagemDAL();
-
+    private OfertaViagemDAL ofertaViagemDAL;
     public GerenciadorDeOfertas(List<OfertaViagem> ofertaViagem)
     {
         this.ofertaViagem = ofertaViagem;
