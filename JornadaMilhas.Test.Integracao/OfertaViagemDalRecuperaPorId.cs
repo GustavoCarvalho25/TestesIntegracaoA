@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace JornadaMilhas.Test.Integracao
 {
-    [CollectionDefinition(nameof(ContextoCollection))]
+    [Collection(nameof(ContextoCollection))]
     public class OfertaViagemDalRecuperaPorId
     {
         private readonly JornadaMilhasContext context;

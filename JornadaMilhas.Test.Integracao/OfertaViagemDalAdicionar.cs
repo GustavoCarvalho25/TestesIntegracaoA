@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace JornadaMilhas.Test.Integracao;
 
-[CollectionDefinition(nameof(ContextoCollection))]
+[Collection(nameof(ContextoCollection))]
 public class OfertaViagemDalAdicionar
 {
     private readonly JornadaMilhasContext context;
