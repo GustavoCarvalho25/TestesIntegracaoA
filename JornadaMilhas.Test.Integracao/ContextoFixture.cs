@@ -31,19 +31,14 @@ public class ContextoFixture : IAsyncLifetime
 
     public void CriaDadosFake()
     {
-        var fakerPeriodo = new Faker<Periodo>()
-            .CustomInstantiator(f =>
-            {
-                DateTime dataInicio = f.Date.Soon();
-                return new Periodo(dataInicio, dataInicio.AddDays(30));
-            });
+        Periodo periodo = new PeriodoDataBuilder().Build();
 
         var rota = new Rota("Curitiba", "São Paulo");
 
         var fakerOferta = new Faker<OfertaViagem>()
             .CustomInstantiator(f => new OfertaViagem(
                 rota,
-                fakerPeriodo.Generate(),
+                new PeriodoDataBuilder().Build(),
                 100 * f.Random.Int(1, 100))
             )
             .RuleFor(o => o.Desconto, f => 40)
@@ -53,6 +48,16 @@ public class ContextoFixture : IAsyncLifetime
         Context.OfertasViagem.AddRange(lista);
         Context.SaveChanges();
 
+    }
+
+    public async Task LimpaDadosBanco()
+    {
+        //Context.OfertasViagem.RemoveRange(Context.OfertasViagem);
+        //Context.Rotas.RemoveRange(Context.Rotas);
+        //await Context.SaveChangesAsync();
+
+        Context.Database.ExecuteSqlRaw("Delete from OfertasViagem");
+        Context.Database.ExecuteSqlRaw("Delete from Rotas");
     }
 
     public async Task DisposeAsync()
