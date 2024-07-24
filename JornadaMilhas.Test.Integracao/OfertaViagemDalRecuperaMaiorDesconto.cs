@@ -28,7 +28,8 @@ public class OfertaViagemDalRecuperaMaiorDesconto
     public void RetornaOfertaEspecificaQuandoDestinoSaoPauloEDesconto40()
     {
         //arrange
-        var rota = new Rota("Curitiba", "São Paulo");
+        Rota rota = new RotaDataBuilder()
+        { Origem = "Fortaleza", Destino = "São Paulo" }.Build();
         Periodo periodo = new PeriodoDataBuilder()
         { DataInicio = new DateTime(2024, 5, 20)}.Build();
         fixture.CriaDadosFake();
