@@ -24,7 +24,7 @@ public class OfertaViagemDalRecuperaMaiorDesconto
     }
 
     [Fact]
-    // destino = são paulo, desconto = 40, preco = 80
+    // Não está funcionando corretamente
     public void RetornaOfertaEspecificaQuandoDestinoSaoPauloEDesconto40()
     {
         //arrange
