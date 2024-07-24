@@ -6,23 +6,23 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace JornadaMilhas.Test.Integracao
+namespace JornadaMilhas.Test.Integracao;
+internal class PeriodoDataBuilder : Faker<Periodo>
 {
-    public class PeriodoDataBuilder: Faker<Periodo>
+    public DateTime? DataInicial { get; set; }
+    public DateTime? DataFinal { get; set; }
+
+    public PeriodoDataBuilder()
     {
-        public DateTime? DataInicio { get; set; }
-        public DateTime? DataFinal { get; set; }
-
-        public PeriodoDataBuilder()
+        CustomInstantiator(f =>
         {
-            CustomInstantiator(f =>
-            {
-                DateTime dataInicio = DataInicio ?? f.Date.Soon();
-                DateTime dataFinal = DataFinal ?? dataInicio.AddDays(30);
-                return new Periodo(dataInicio, dataFinal);
-            });
-        }
-
-        public Periodo Build() => Generate();
+            DateTime dataInicio = DataInicial ?? f.Date.Soon();
+            DateTime dataFinal = DataFinal ?? dataInicio.AddDays(30);
+            return new Periodo(dataInicio, dataFinal);
+        });
     }
+
+    public Periodo Build() => Generate();
+
+
 }
