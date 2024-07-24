@@ -9,7 +9,7 @@ using static System.Net.Mime.MediaTypeNames;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace JornadaMilhas.Dados;
-public class JornadaMilhasContext: DbContext
+public class JornadaMilhasContext : DbContext
 {
     public DbSet<OfertaViagem> OfertasViagem { get; set; }
     public DbSet<Rota> Rotas { get; set; }
@@ -20,8 +20,11 @@ public class JornadaMilhasContext: DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
-        optionsBuilder
+        if (!optionsBuilder.IsConfigured)
+        {
+            optionsBuilder
             .UseSqlServer("Integrated Security=SSPI;Persist Security Info=False;Initial Catalog=JornadaMilhas;Data Source=localhost;Password=Nesher!2020;TrustServerCertificate=true;");
+        }
     }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
