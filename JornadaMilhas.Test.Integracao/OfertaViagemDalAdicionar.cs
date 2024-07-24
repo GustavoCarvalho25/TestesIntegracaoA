@@ -42,7 +42,6 @@ public class OfertaViagemDalAdicionar
     public void RegistraOfertaNoBancoComInformacoesCorretas()
     {
         //arrange
-        //arrange
         var oferta = CriaOfertaViagem();
         var dal = new OfertaViagemDAL(context);
 
