@@ -9,14 +9,31 @@ using Xunit.Abstractions;
 namespace JornadaMilhas.Test.Integracao
 {
     [Collection(nameof(ContextoCollection))]
-    internal class OfertaViagemDalRecuperarTodas
+    public class OfertaViagemDalRecuperarTodas
     {
         private readonly JornadaMilhasContext context;
+        private readonly ITestOutputHelper output;
 
         public OfertaViagemDalRecuperarTodas(ITestOutputHelper output, ContextoFixture fixture)
         {
-            context = fixture.Context;
+            this.context = fixture.Context;
+            this.output = output;
             output.WriteLine(context.GetHashCode().ToString());
+        }
+
+        [Fact]
+        public void DeveRecuperarTodasAsOfertasDeViagem()
+        {
+            // Arrange
+            var dal = new OfertaViagemDAL(context);
+
+            // Act
+            var ofertas = dal.RecuperarTodas();
+
+            // Assert
+            Assert.NotNull(ofertas);
+            Assert.NotEmpty(ofertas);
+            output.WriteLine($"Número de ofertas recuperadas: {ofertas.Count()}");
         }
 
     }
